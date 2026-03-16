@@ -2,8 +2,13 @@ id: http://example.org/inheritance
 name: inheritance-slot-usage
 prefixes:
   ex: http://example.org/
+  xsd: http://www.w3.org/2001/XMLSchema#
+  linkml: https://w3id.org/linkml/
 
 default_prefix: ex
+
+imports:
+  - linkml:types
 
 classes:
   BaseEntity:

@@ -1,0 +1,4 @@
+{
+  "id":"ex:instance1"
+  /* Missing required slot 'name' intentionally to demonstrate validation failure */
+}

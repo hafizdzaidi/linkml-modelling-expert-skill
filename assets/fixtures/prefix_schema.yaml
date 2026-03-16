@@ -1,0 +1,19 @@
+id: http://example.org/prefix-example
+name: prefix-example
+prefixes:
+  ex: http://example.org/
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: ex
+
+classes:
+  Thing:
+    slots:
+      - id
+      - label
+
+slots:
+  id:
+    identifier: true
+    range: string
+  label:
+    range: string

@@ -1,0 +1,20 @@
+id: http://example.org/minimal
+name: minimal
+prefixes:
+  ex: http://example.org/
+
+default_prefix: ex
+
+classes:
+  Person:
+    description: "A minimal person class"
+    slots:
+      - id
+      - name
+
+slots:
+  id:
+    identifier: true
+    range: string
+  name:
+    range: string

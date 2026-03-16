@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "linkml-modelling-expert"
+version = "0.1.0"
+description = "Author, review, refactor, lint, and validate LinkML schemas using current official LinkML documentation and metamodel guidance."
+authors = ["Copilot <223556219+Copilot@users.noreply.github.com>"]
+readme = "SKILL.md"
+
+[tool.poetry.dependencies]
+python = ">=3.10,<4.0"
+linkml = "1.10.0"
+linkml-runtime = "1.10.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

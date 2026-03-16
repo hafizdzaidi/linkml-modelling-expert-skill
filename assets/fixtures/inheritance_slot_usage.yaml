@@ -1,0 +1,26 @@
+id: http://example.org/inheritance
+name: inheritance-slot-usage
+prefixes:
+  ex: http://example.org/
+
+default_prefix: ex
+
+classes:
+  BaseEntity:
+    slots:
+      - created_on
+  Person:
+    is_a: BaseEntity
+    slot_usage:
+      created_on:
+        range: date
+  Event:
+    is_a: BaseEntity
+    slot_usage:
+      created_on:
+        range: datetime
+
+slots:
+  created_on:
+    description: "Creation timestamp"
+    range: string

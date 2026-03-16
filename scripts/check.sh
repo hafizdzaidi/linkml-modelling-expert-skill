@@ -8,7 +8,14 @@ if [ -f "$SCHEMA" ]; then
   echo "Running lint on $SCHEMA (non-failing)"
   # If poetry is available, try to run the linter inside the project's venv
   if command -v poetry >/dev/null 2>&1; then
-    echo "poetry detected; checking for LinkML packages inside project venv"
+    echo "poetry detected; showing venv info and installed packages for debugging"
+    echo "poetry env info -p:"
+    poetry env info -p 2>/dev/null || true
+    echo "poetry run python -c 'import sys; print(sys.executable)':"
+    poetry run python -c 'import sys; print(sys.executable)' 2>/dev/null || true
+    echo "Installed packages in poetry venv (pip list):"
+    poetry run python -m pip list 2>/dev/null || true
+
     if poetry run python - <<'PY'
 import importlib.util, sys
 print(bool(importlib.util.find_spec('linkml_lint')))

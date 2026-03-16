@@ -3,13 +3,12 @@ name: minimal
 prefixes:
   ex: http://example.org/
   xsd: http://www.w3.org/2001/XMLSchema#
+  linkml: https://w3id.org/linkml/
 
 default_prefix: ex
 
-types:
-  string:
-    uri: xsd:string
-    description: "Primitive string (xsd:string)"
+imports:
+  - linkml:types
 
 
 

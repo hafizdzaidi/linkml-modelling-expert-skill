@@ -6,11 +6,6 @@ prefixes:
 
 default_prefix: ex
 
-# Use explicit XSD types for primitive ranges to satisfy linkml-lint
-types:
-  xsd:string:
-    base: string
-
 
 classes:
   Person:
@@ -22,6 +17,6 @@ classes:
 slots:
   id:
     identifier: true
-    range: string
+    range: xsd:string
   name:
-    range: string
+    range: xsd:string

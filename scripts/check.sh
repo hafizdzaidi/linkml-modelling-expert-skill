@@ -1,11 +1,16 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Run minimal smoke checks and prefer using poetry-run binaries when available
-echo "Running LinkML minimal smoke checks..."
-SCHEMA="assets/fixtures/minimal_schema.yaml"
-if [ -f "$SCHEMA" ]; then
-  echo "Running lint on $SCHEMA (non-failing)"
+# Run smoke checks across all fixtures and prefer using poetry-run binaries when available
+echo "Running LinkML smoke checks..."
+
+for SCHEMA in assets/fixtures/*.yaml; do
+  if [ ! -f "$SCHEMA" ]; then
+    echo "No schema fixtures found (checked assets/fixtures/*.yaml)"
+    break
+  fi
+  echo "\n--- Linting: $SCHEMA ---"
+
   # If poetry is available, try to run the linter inside the project's venv
   if command -v poetry >/dev/null 2>&1; then
     echo "poetry detected; showing venv info and installed packages for debugging"
@@ -43,8 +48,6 @@ PY
       bash scripts/lint_linkml.sh "$SCHEMA" || true
     fi
   fi
-else
-  echo "No schema fixture found at $SCHEMA"
-fi
+done
 
-echo "LinkML smoke completed."
+echo "\nLinkML smoke completed."

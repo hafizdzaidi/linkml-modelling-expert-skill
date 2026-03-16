@@ -6,6 +6,12 @@ prefixes:
 
 default_prefix: ex
 
+types:
+  string:
+    uri: xsd:string
+    description: "Primitive string (xsd:string)"
+
+
 
 classes:
   Person:
@@ -17,6 +23,6 @@ classes:
 slots:
   id:
     identifier: true
-    range: xsd:string
+    range: string
   name:
-    range: xsd:string
+    range: string

@@ -22,7 +22,8 @@ jobs:
       - name: Install Poetry
         run: |
           curl -sSL https://install.python-poetry.org | python3 -
-          echo "export PATH=\"$HOME/.local/bin:$PATH\"" >> $GITHUB_ENV
+          # Ensure the installed poetry binary is available to subsequent steps
+          echo "PATH=$HOME/.local/bin:$PATH" >> $GITHUB_ENV
           poetry --version
 
       - name: Install dependencies
@@ -46,6 +47,8 @@ jobs:
             wd='.'
           fi
           cd "$wd"
+          # Ensure poetry is on PATH in case the installer updated GITHUB_ENV without immediate effect
+          export PATH="$HOME/.local/bin:$PATH"
           if [ -x scripts/check.sh ]; then
             ./scripts/check.sh > smoke.log 2>&1 || true
           elif [ -f scripts/check.py ]; then

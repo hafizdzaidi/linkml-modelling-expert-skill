@@ -2,8 +2,15 @@ id: http://example.org/minimal
 name: minimal
 prefixes:
   ex: http://example.org/
+  xsd: http://www.w3.org/2001/XMLSchema#
 
 default_prefix: ex
+
+# Use explicit XSD types for primitive ranges to satisfy linkml-lint
+types:
+  xsd:string:
+    base: string
+
 
 classes:
   Person:

@@ -28,9 +28,9 @@ jobs:
       - name: Install dependencies
         run: |
           if [ -f pyproject.toml ]; then
-            poetry install --no-interaction
+            poetry install --no-interaction --no-root
           elif [ -f .skills/linkml-modelling-expert/pyproject.toml ]; then
-            cd .skills/linkml-modelling-expert && poetry install --no-interaction
+            cd .skills/linkml-modelling-expert && poetry install --no-interaction --no-root
           else
             echo "No pyproject.toml found; skipping dependency install"
           fi

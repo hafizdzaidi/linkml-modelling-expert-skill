@@ -11,13 +11,16 @@ imports:
 
 classes:
   Thing:
+    description: "Generic thing"
     slots:
       - id
       - label
 
 slots:
   id:
+    description: "Unique identifier"
     identifier: true
-    range: xsd:string
+    range: string
   label:
-    range: xsd:string
+    description: "Human-readable label"
+    range: string

@@ -59,8 +59,15 @@ jobs:
           echo "Smoke log created at $wd/smoke.log"
 
       - name: Upload smoke log artifact
+        id: upload-smoke
         uses: actions/upload-artifact@v4
         with:
           name: smoke-log
           path: '**/smoke.log'
           retention-days: 90
+
+      - name: Record artifact info in job summary
+        run: |
+          echo "Smoke artifact URL: ${{ steps.upload-smoke.outputs.artifact-url }}" >> $GITHUB_STEP_SUMMARY
+          echo "Smoke artifact ID: ${{ steps.upload-smoke.outputs.artifact-id }}" >> $GITHUB_STEP_SUMMARY
+          echo "Smoke artifact digest: ${{ steps.upload-smoke.outputs.artifact-digest }}" >> $GITHUB_STEP_SUMMARY

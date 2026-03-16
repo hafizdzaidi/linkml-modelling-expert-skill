@@ -26,14 +26,26 @@ jobs:
           poetry --version
 
       - name: Install dependencies
-        working-directory: .skills/linkml-modelling-expert
         run: |
-          poetry install --no-interaction
+          if [ -f pyproject.toml ]; then
+            poetry install --no-interaction
+          elif [ -f .skills/linkml-modelling-expert/pyproject.toml ]; then
+            cd .skills/linkml-modelling-expert && poetry install --no-interaction
+          else
+            echo "No pyproject.toml found; skipping dependency install"
+          fi
 
       - name: Run smoke suite
-        working-directory: .skills/linkml-modelling-expert
         run: |
           set -eo pipefail
+          if [ -f pyproject.toml ]; then
+            wd='.'
+          elif [ -d .skills/linkml-modelling-expert ]; then
+            wd='.skills/linkml-modelling-expert'
+          else
+            wd='.'
+          fi
+          cd "$wd"
           if [ -x scripts/check.sh ]; then
             ./scripts/check.sh > smoke.log 2>&1 || true
           elif [ -f scripts/check.py ]; then
@@ -41,10 +53,11 @@ jobs:
           else
             echo "No smoke script found" > smoke.log
           fi
+          echo "Smoke log created at $wd/smoke.log"
 
       - name: Upload smoke log artifact
         uses: actions/upload-artifact@v4
         with:
           name: smoke-log
-          path: .skills/linkml-modelling-expert/smoke.log
+          path: '**/smoke.log'
           retention-days: 90

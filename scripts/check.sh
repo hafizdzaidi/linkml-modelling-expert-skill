@@ -18,14 +18,15 @@ if [ -f "$SCHEMA" ]; then
 
     if poetry run python - <<'PY'
 import importlib.util, sys
-print(bool(importlib.util.find_spec('linkml_lint')))
+# Exit 0 if module exists, 1 otherwise — allows shell 'if' to test presence
+sys.exit(0 if importlib.util.find_spec('linkml_lint') else 1)
 PY
     then
       echo "Using 'poetry run linkml-lint'"
       poetry run linkml-lint "$SCHEMA" || true
     elif poetry run python - <<'PY'
 import importlib.util, sys
-print(bool(importlib.util.find_spec('linkml')))
+sys.exit(0 if importlib.util.find_spec('linkml') else 1)
 PY
     then
       echo "Using 'poetry run linkml lint'"

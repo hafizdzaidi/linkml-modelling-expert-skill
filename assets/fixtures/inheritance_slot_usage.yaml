@@ -12,20 +12,25 @@ imports:
 
 classes:
   BaseEntity:
+    description: "Base entity with creation timestamp"
     slots:
       - created_on
   Person:
+    description: "A person entity"
     is_a: BaseEntity
     slot_usage:
       created_on:
-        range: xsd:date
+        range: date
+        description: "Date when person was created (no time)"
   Event:
+    description: "An event entity"
     is_a: BaseEntity
     slot_usage:
       created_on:
-        range: xsd:dateTime
+        range: datetime
+        description: "Timestamp when event was created (with time)"
 
 slots:
   created_on:
     description: "Creation timestamp"
-    range: xsd:dateTime
+    range: datetime

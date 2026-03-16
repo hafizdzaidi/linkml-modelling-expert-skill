@@ -21,7 +21,9 @@ classes:
 
 slots:
   id:
+    description: "Unique identifier"
     identifier: true
     range: string
   name:
+    description: "Person's full name"
     range: string

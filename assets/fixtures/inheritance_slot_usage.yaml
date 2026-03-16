@@ -18,14 +18,14 @@ classes:
     is_a: BaseEntity
     slot_usage:
       created_on:
-        range: date
+        range: xsd:date
   Event:
     is_a: BaseEntity
     slot_usage:
       created_on:
-        range: datetime
+        range: xsd:dateTime
 
 slots:
   created_on:
     description: "Creation timestamp"
-    range: string
+    range: xsd:dateTime

@@ -18,6 +18,6 @@ classes:
 slots:
   id:
     identifier: true
-    range: string
+    range: xsd:string
   label:
-    range: string
+    range: xsd:string
